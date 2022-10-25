@@ -1,5 +1,5 @@
 const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
-
+//游戏模式
 (function(w) {
     function getJsonI18N() {
         // https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator/language
@@ -135,7 +135,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         refreshSizeTime = setTimeout(_refreshSize, 200);
     }
 
-    function _refreshSize() {
+    function _refreshSize() {//更新表格
         countBlockSize();
         for (let i = 0; i < GameLayer.length; i++) {
             let box = GameLayer[i];
@@ -176,7 +176,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         _gameOver = false,
         _gameStart = false,
         _gameSettingNum=20,
-        _gameTime, _gameTimeNum, _gameScore, _date1, deviationTime;
+        _gameTime, _gameTimeNum, _gameScore, _date1, deviationTime;//游戏状态初始化
 
     let _gameStartTime, _gameStartDatetime;
 
@@ -190,8 +190,20 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             id: "end"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tap.mp3",
-            id: "tap"
+            src: "./static/music/tap1.mp3",
+            id: "tap1"
+        });
+        createjs.Sound.registerSound({
+            src: "./static/music/tap2.mp3",
+            id: "tap2"
+        });
+        createjs.Sound.registerSound({
+            src: "./static/music/tap3.mp3",
+            id: "tap3"
+        });
+        createjs.Sound.registerSound({
+            src: "./static/music/tap4.mp3",
+            id: "tap4"
         });
         gameRestart();
     }
@@ -297,7 +309,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         _clearttClsReg = / t{1,2}\d+| bad/;
 
     function refreshGameLayer(box, loop, offset) {
-        let i = Math.floor(Math.random() * 1000) % 4 + (loop ? 0 : 4);
+        let i = Math.floor(Math.random() * 1000) % 4 + (loop ? 0 : 4);//Math.floor() 函数总是返回小于等于一个给定数字的最大整数。
         for (let j = 0; j < box.children.length; j++) {
             let r = box.children[j], rstyle = r.style;
             rstyle.left = (j % 4) * blockSize + 'px';
@@ -346,7 +358,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         }
     }
 
-    function gameTapEvent(e) {
+    function gameTapEvent(e) {//点击时间
         if (_gameOver) {
             return false;
         }
@@ -362,8 +374,16 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             if (!_gameStart) {
                 gameStart();
             }
-            if (soundMode === 'on') {
-                createjs.Sound.play("tap");
+            if (soundMode === 'on') {//播放音乐
+                let ii = math.floor(math.random()*1000)%4;
+                if(ii==0)
+                createjs.Sound.play("tap1");
+                else if(ii==1)
+                createjs.Sound.play("tap2");
+                else if(ii==2)
+                createjs.Sound.play("tap3");
+                else
+                createjs.Sound.play("tap4");
             }
             tar = document.getElementById(p.id);
             tar.className = tar.className.replace(_ttreg, ' tt$1');
@@ -435,7 +455,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         return deviationTime < (_gameSettingNum + 3) * 1000;
     }
 
-    function showGameScoreLayer(cps) {
+    function showGameScoreLayer(cps) {//展示分数
         let l = $('#GameScoreLayer');
         let c = $(`#${_gameBBList[_gameBBListIndex - 1].id}`).attr('class').match(_ttreg)[1];
         let score = (mode === MODE_ENDLESS ? cps : _gameScore);
@@ -482,7 +502,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         if (cps <= 8) return I18N['text-level-2'];
         if (cps <= 10)  return I18N['text-level-3'];
         if (cps <= 15) return I18N['text-level-4'];
-        return I18N['text-level-5'];
+        return I18N['text-level-5'];//等级判定
     }
 
     function toStr(obj) {
