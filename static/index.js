@@ -190,19 +190,19 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             id: "end"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tap1.mp3",
+            src: "./static/music/tapa.mp3",
             id: "tapa"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tap2.mp3",
+            src: "./static/music/tapb.mp3",
             id: "tapb"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tap3.mp3",
+            src: "./static/music/tapc.mp3",
             id: "tapc"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tap4.mp3",
+            src: "./static/music/tapd.mp3",
             id: "tapd"
         });
         gameRestart();
@@ -375,20 +375,20 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
                 gameStart();
             }
             if (soundMode === 'on') {//播放音乐
-                var ii = math.floor(math.random()*1000)%4;
+                let ii = math.floor(math.random()*1000)%4;
                 swtich(ii){
                     case 0:
                         createjs.Sound.play("tapb");
-                    break;
-                    case 0:
+                        break;
+                    case 1:
                         createjs.Sound.play("tapc");
-                    break;
-                    case 0:
+                        break;
+                    case 2:
                         createjs.Sound.play("tapd");
-                    break;
+                        break;
                     default:
                         createjs.Sound.play("tapa");
-                }        
+                }      
             }
             tar = document.getElementById(p.id);
             tar.className = tar.className.replace(_ttreg, ' tt$1');
