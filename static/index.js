@@ -190,20 +190,8 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             id: "end"
         });
         createjs.Sound.registerSound({
-            src: "./static/music/tapa.mp3",
-            id: "tapa"
-        });
-        createjs.Sound.registerSound({
-            src: "./static/music/tapb.mp3",
-            id: "tapb"
-        });
-        createjs.Sound.registerSound({
-            src: "./static/music/tapc.mp3",
-            id: "tapc"
-        });
-        createjs.Sound.registerSound({
-            src: "./static/music/tapd.mp3",
-            id: "tapd"
+            src: "./static/music/tap.mp3",
+            id: "tap"
         });
         gameRestart();
     }
@@ -375,20 +363,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
                 gameStart();
             }
             if (soundMode === 'on') {//播放音乐
-                let ii = math.floor(math.random()*1000)%4;
-                swtich(ii){
-                    case 0:
-                        createjs.Sound.play("tapb");
-                        break;
-                    case 1:
-                        createjs.Sound.play("tapc");
-                        break;
-                    case 2:
-                        createjs.Sound.play("tapd");
-                        break;
-                    default:
-                        createjs.Sound.play("tapa");
-                }      
+                createjs.Sound.play("tap");
             }
             tar = document.getElementById(p.id);
             tar.className = tar.className.replace(_ttreg, ' tt$1');
