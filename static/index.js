@@ -193,7 +193,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
             src: "./static/music/tap.mp3",
             id: "tap"
         });
-        createjs.Sound.registetSound({
+        /*createjs.Sound.registetSound({
             src:"./static/music/tapb.mp3",
             id: "ni"
         });
@@ -204,7 +204,7 @@ const MODE_NORMAL = 1, MODE_ENDLESS = 2, MODE_PRACTICE = 3;
         createjs.Sound.registerSound({
             src:"./static/music/tapd.mp3"
             id: "mei"
-        });
+        });*/
         gameRestart();
     }
 
